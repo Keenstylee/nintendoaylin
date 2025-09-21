@@ -1,85 +1,283 @@
+/* ===============================
+   Estilos base del sitio
+   Autor: Tú :)
+   Bootstrap 5.3.8
+================================== */
+
+/* Variables propias (puedes cambiar la paleta aquí) */
+:root {
+  --brand-danger: #dc3545;         /* coincide con .bg-danger */
+  --brand-warning: #ffc107;        /* coincide con .bg-warning */
+  --brand-success: #198754;        /* coincide con .bg-success */
+  --brand-primary: #0d6efd;        /* coincide con .bg-primary */
+  --text-dark: #212529;
+  --text-light: #f8f9fa;
+  --shadow-soft: 0 8px 24px rgba(0,0,0,.08);
+  --shadow-hover: 0 12px 32px rgba(0,0,0,.12);
+  --radius-3: 0.75rem;
+}
+
+/* Modo oscuro opcional (si usas data-bs-theme="dark") */
+[data-bs-theme="dark"] {
+  --text-light: #e9ecef;
+}
+
+/* Tipografía y suavizado */
 html { scroll-behavior: smooth; }
-/* PRUEBA rápida para comprobar que CSS funciona */
 body {
-  /* /* background-color: lightblue !important; */ (desactivado para versión final) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-dark);
 }
 
-/* Ribbon con franjas diagonales */
-#ribbon {
-  background-color: rgb(219,26,26);
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 25px,
-    rgba(131, 21, 21, 0.5) 25px,
-    rgba(131, 21, 21, 0.5) 40px
-  );
+/* Utilidad: sombra de texto suave */
+.texto-sombra,
+.text-shadow {
+  text-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+
+/* ===============================
+   NAVBAR
+================================== */
+
+/* Ajuste de logo en navbar para que no deforme */
+.navbar-brand img {
+  max-height: 56px;
+  height: auto;
+  width: auto;
+}
+
+/* Subrayado sutil al pasar por links del nav */
+.navbar .nav-link {
   position: relative;
-  margin-top: -20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  z-index: 5;
+  transition: color .2s ease;
+}
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: .5rem;
+  right: .5rem;
+  bottom: .25rem;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+  opacity: .6;
+}
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  transform: scaleX(1);
 }
 
-/* Texto con sombra */
-.texto-sombra {
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-}
+/* ===============================
+   CARRUSEL
+================================== */
 
-/* Separador-Ribbon */
-#separador-ribbon .contenido {
-  width: 150%;
-  margin-left: -25%;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
+#carrusel .carousel {
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-3);
   overflow: hidden;
 }
 
-#separador-ribbon h2,
-#separador-ribbon p {
-  color: #000;
+/* Alturas responsivas + recorte elegante */
+#carrusel .carousel-item img {
+  width: 100%;
+  height: 45vh;
+  min-height: 260px;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* JUEGOS */
-#juegos{
-  padding-top: 60px; padding-bottom: 60px;
-  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-}
-.card-border{
-  border: 3px solid rgba(0,0,0,0.06);
-  border-radius: 1rem;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-}
-#juegos .card img { object-fit: cover; height: 220px; }
-
-/* SEPARADOR AMIIBO */
-#separador-amiibo { overflow: hidden; }
-#separador-amiibo .separador{
-  width: 150%; height: 60px;
-  background: #ffc107;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  margin-left: -25%;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+@media (min-width: 768px) {
+  #carrusel .carousel-item img {
+    height: 60vh;
+    min-height: 360px;
+  }
 }
 
-/* AMIIBO */
-#amiibo{
-  padding-top: 60px; padding-bottom: 60px;
-  background: radial-gradient(80% 80% at 50% 0%, #fff 0%, #f1f3f5 100%);
+/* Indicadores más visibles */
+#carrusel .carousel-indicators [data-bs-target] {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
 }
-#amiibo img{ max-height: 340px; object-fit: contain; }
 
-/* NINTENDO */
-#nintendo{
-  padding-top: 60px; padding-bottom: 60px;
-  background: linear-gradient(135deg, #fff 0%, #f8f9fa 50%, #eef2f4 100%);
-}
-#nintendo .card{ transition: transform .2s ease; }
-#nintendo .card:hover{ transform: translateY(-4px); }
+/* ===============================
+   RIBBON / FAJA
+================================== */
 
-/* FOOTER */
-#footer{
-  background: #f1f3f5;
-  border-top: 1px solid #dee2e6;
+#ribbon {
+  background: linear-gradient(135deg, var(--brand-danger), #f06666);
+  color: var(--text-light);
 }
-#footer a:hover{ text-decoration: underline; }
+#pajarraco {
+  /* el contenedor ya tiene w-50 ps-5 desde Bootstrap */
+}
+#ribbon img {
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,.25));
+}
+
+/* Separador simple (entre secciones) */
+#separador-ribbon .contenido {
+  height: 5rem; /* sobreescribe si quieres */
+}
+
+/* ===============================
+   CARDS (sección juegos)
+================================== */
+
+.card-border {
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-soft);
+  transition: transform .2s ease, box-shadow .2s ease;
+  overflow: hidden;
+}
+
+.card-border .card-img-top {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.card-border:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Ajuste de badge de llamada a la acción */
+#juegos .badge {
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+/* ===============================
+   AMIIBOS
+================================== */
+
+#amiibos {
+  background: linear-gradient(180deg, var(--brand-success), #0f6c47);
+}
+
+/* Rejilla de figuras */
+.amiibo {
+  display: block;
+  transition: transform .2s ease, filter .2s ease;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.25));
+  transform: translateY(0);
+}
+.amiibo:hover {
+  transform: translateY(-6px) scale(1.02);
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,.3));
+}
+
+/* Nombre debajo de la figura */
+.amiibo-name {
+  display: inline-block;
+  background: rgba(255,255,255,.85);
+  color: #111;
+  border-radius: 999px;
+  padding: .25rem .75rem;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Botón “Ver catálogo Amiibo” */
+#amiibos .btn-warning {
+  border: none;
+  box-shadow: var(--shadow-soft);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#amiibos .btn-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Separador inferior de la sección (si quieres una forma/degradado) */
+#separator-amiibos-footer {
+  height: 20px;
+  background: linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,0), rgba(255,255,255,.15));
+  margin-top: .5rem;
+}
+
+/* ===============================
+   SECCIÓN “NINTENDO” (cards de color)
+================================== */
+
+/* El .row g-0 en las cards ya elimina los gaps; aquí suavizamos la imagen */
+#nintendo .card img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cards coloridas elevadas */
+#nintendo .card {
+  border: 0;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ===============================
+   ENLACES LISTA INFERIOR
+================================== */
+
+#juegos .row.text-center a {
+  text-decoration: none;
+  position: relative;
+  padding: .25rem;
+}
+#juegos .row.text-center a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .2s ease;
+  opacity: .5;
+}
+#juegos .row.text-center a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ===============================
+   UTILIDADES
+================================== */
+
+/* Bordes redondeados consistentes para imágenes sueltas */
+.rounded-3,
+img.rounded-3 {
+  border-radius: var(--radius-3) !important;
+}
+
+/* Reduce animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Ajustes de foco (accesibilidad): anillos más visibles sobre fondos intensos */
+:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, .9);
+  outline-offset: 2px;
+}
+.navbar .nav-link:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, .9);
+  outline-offset: 3px;
+}
+
+/* ===============================
+   PEQUEÑOS FIXES
+================================== */
+
+/* En algunos navegadores, las imágenes dentro de col con g-0 pueden salirse por 1px */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
