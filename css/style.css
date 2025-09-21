@@ -1,0 +1,85 @@
+html { scroll-behavior: smooth; }
+/* PRUEBA rápida para comprobar que CSS funciona */
+body {
+  /* /* background-color: lightblue !important; */ (desactivado para versión final) */
+}
+
+/* Ribbon con franjas diagonales */
+#ribbon {
+  background-color: rgb(219,26,26);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 25px,
+    rgba(131, 21, 21, 0.5) 25px,
+    rgba(131, 21, 21, 0.5) 40px
+  );
+  position: relative;
+  margin-top: -20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  z-index: 5;
+}
+
+/* Texto con sombra */
+.texto-sombra {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+/* Separador-Ribbon */
+#separador-ribbon .contenido {
+  width: 150%;
+  margin-left: -25%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  overflow: hidden;
+}
+
+#separador-ribbon h2,
+#separador-ribbon p {
+  color: #000;
+}
+
+/* JUEGOS */
+#juegos{
+  padding-top: 60px; padding-bottom: 60px;
+  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+}
+.card-border{
+  border: 3px solid rgba(0,0,0,0.06);
+  border-radius: 1rem;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+#juegos .card img { object-fit: cover; height: 220px; }
+
+/* SEPARADOR AMIIBO */
+#separador-amiibo { overflow: hidden; }
+#separador-amiibo .separador{
+  width: 150%; height: 60px;
+  background: #ffc107;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  margin-left: -25%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* AMIIBO */
+#amiibo{
+  padding-top: 60px; padding-bottom: 60px;
+  background: radial-gradient(80% 80% at 50% 0%, #fff 0%, #f1f3f5 100%);
+}
+#amiibo img{ max-height: 340px; object-fit: contain; }
+
+/* NINTENDO */
+#nintendo{
+  padding-top: 60px; padding-bottom: 60px;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 50%, #eef2f4 100%);
+}
+#nintendo .card{ transition: transform .2s ease; }
+#nintendo .card:hover{ transform: translateY(-4px); }
+
+/* FOOTER */
+#footer{
+  background: #f1f3f5;
+  border-top: 1px solid #dee2e6;
+}
+#footer a:hover{ text-decoration: underline; }
